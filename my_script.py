@@ -9,7 +9,7 @@ import json
 session = HTMLSession()
 my_email = ''
 password = ''
-receiver_email = ['seandaryanani@hotmail.com', 'seand52@gmail.com']
+receiver_email = ['seand52@gmail.com']
 
 
 # Get environment variables from secrets.json file
@@ -30,8 +30,8 @@ def get_times(movie):
 def get_data():
     url = 'https://www.ecartelera.com/cines/95,0,1.html'
     resp = session.get(url)
-    resp.html.render()
-    html_soup = BeautifulSoup(resp.html.html, 'html5lib')
+    resp.html.render(timeout=10, sleep=10)
+    html_soup = BeautifulSoup(resp.html.html, 'html.parser')
     movies = html_soup.find_all('div', class_='lfilmbc cajax')
     return movies
 
